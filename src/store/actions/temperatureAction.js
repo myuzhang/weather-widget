@@ -1,0 +1,1 @@
+export const selectTemperature = (metric) => ({type: metric})
