@@ -6,6 +6,7 @@ import { createStore } from 'redux';
 import allReducers from './store/reducers';
 import App from './App';
 import httpAdapter from 'axios/lib/adapters/http'
+import { degToCard } from './utils'
 
 axios.defaults.adapter = httpAdapter
 
@@ -19,7 +20,7 @@ test('renders learn react link', () => {
   </Provider>);
   const elements = getAllByText(/Title/i);
   expect(elements.length).toBeGreaterThan(1);
-});
+})
 
 test('get temperature value', async () => {
   const result = await axios(
@@ -36,4 +37,16 @@ test('get temperature value', async () => {
     }
   )
   expect(result.data).not.toBeUndefined()
-});
+})
+
+test.only('should get correct cardinal point', () => {
+  expect(degToCard(0)).toBe('N')
+  expect(degToCard(360)).toBe('N')
+  expect(degToCard(359)).toBe('N')
+
+  expect(degToCard(11.25)).toBe('NNE')
+  
+  expect(degToCard(191.24)).toBe('S')
+  expect(degToCard(191.25)).toBe('SSW')
+  expect(degToCard(191.26)).toBe('SSW')
+})
