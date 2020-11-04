@@ -1,0 +1,97 @@
+  .wrapper {
+    margin: auto;
+    width: 760px;
+    height: 360px;
+
+  }
+
+.Wether-Container {
+  margin: auto;
+  border: 2px solid lightgray;
+  padding: 20px 30px;
+  height: 300px;
+  background-color: whitesmoke;
+}
+
+form > div {
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+  margin-left: 40px;
+  margin-bottom: 25px;
+}
+
+.input-text {
+  margin-top: 12px;
+  font-size: 18px;
+  height: 24px;
+  width: 250px;
+}
+
+.padme {
+  margin-left: 80px;
+}
+
+.side {
+  margin: 50px 0px;
+  width: 320px;
+  float: left;
+  height: 200px;
+}
+
+.shadow {
+  margin: auto;
+  border-radius: 5px;
+  border-style: groove;
+  border-color: white;
+  width: 280px;
+  height: 200px;
+  background-color: white;
+}
+
+.vl {
+  margin-top: 60px;
+  margin-left: 15px;
+  margin-right: 15px;
+  float: left;
+  border-left: 2px solid lightgray;
+  padding-left: 1px;
+  padding-right: 3px;
+  height: 180px;
+}
+
+.widget-side {
+  width: 80px;
+  float: left;
+  height: 100px;
+}
+
+.weather-image {
+  float: left;
+}
+
+.weather-info {
+  margin: 1px 15px;
+  float: left;
+}
+
+.big-temp {
+  margin: 0;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.title {
+  margin: 20px;
+}
+
+.city {
+  margin: 2px;
+  font-size: 18px;
+  font-family: "Lato", sans-serif;
+}
+
+.wind {
+  margin: 2px;
+  font-size: 12px;
+  font-family: "Lato", sans-serif;
+}

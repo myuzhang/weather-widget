@@ -1,0 +1,21 @@
+@media (max-width: 760px) {
+  .wrapper {
+    margin: auto;
+    width: 380px;
+    height: 600px;
+  }
+
+  .Wether-Container {
+    height: 480px;
+  }
+
+  .vl {
+    border: 0;
+    padding: 0;
+    border-top: 2px solid lightgray;
+    padding-bottom: 1px;
+    padding-bottom: 3px;
+    height: 10px;
+    width: 300px;
+  }
+}
