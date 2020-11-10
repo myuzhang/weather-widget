@@ -8,7 +8,7 @@ const initialState = {
   city: 'Sydney',
   windSpeed: 0,
   windDirection: 'N',
-  weatherImageIcon: '',
+  weatherImageIcon: '01d',
 }
 
 const widgetReducer = (state, action) => {
@@ -29,26 +29,35 @@ const Widget = () => {
   const title = useSelector(state => state.title)
   const wind = useSelector(state => state.wind)
 
+  const featchWeather = async (url = `https://api.openweathermap.org/data/2.5/weather?q=${initialState.city}&appid=9d17ef1b2ff64e1404e9ebca2d6a0018`) => {
+    const rawResponse = await fetch(
+      url,
+      {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+        },
+      })
+    const result = await rawResponse.json()
+
+    dispatch({type: 'updateWeather', payload: {  
+      degree: result.main.temp,
+      city: result.name,
+      windSpeed: result.wind.speed,
+      windDeg: result.wind.deg,
+      weatherImageIcon: result.weather[0].icon,}})
+  }
+
   useEffect(() => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(async position => {
-        const rawResponse = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=9d17ef1b2ff64e1404e9ebca2d6a0018`,
-          {
-            method: 'GET',
-            headers: {
-              'Accept': 'application/json',
-            },
-          })
-        const result = await rawResponse.json()
-        
-        dispatch({type: 'updateWeather', payload: {  
-          degree: result.main.temp,
-          city: result.name,
-          windSpeed: result.wind.speed,
-          windDeg: result.wind.deg,
-          weatherImageIcon: result.weather[0].icon,}})
+      navigator.geolocation.getCurrentPosition(position => {
+        featchWeather(`https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=9d17ef1b2ff64e1404e9ebca2d6a0018`)
+      }, err => {
+        console.warn(`ERROR(${err.code}): ${err.message}, Sydney as location is used.`);
+        featchWeather()
       })
+    } else {
+      featchWeather()
     }
   }, [])
 
